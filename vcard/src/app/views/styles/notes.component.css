@@ -1,0 +1,65 @@
+label {
+    display: flex;
+    justify-content: space-between;
+}
+#form {
+    width: 250px;
+    position: fixed;
+    bottom: 10px;
+    right: 70px;
+    transform: translateX(500px);
+    transition: transform 0.5s;
+}
+#edit {
+    width: 250px;
+    position: fixed;
+    bottom: 80px;
+    right: 70px;
+}
+#form.display, .apercu.display {
+    transform: translateX(0px);
+}
+
+#add_button{
+    position: fixed;
+    z-index : 1;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+    font-size: 42px;
+    text-align: center;
+
+}
+#container {
+    display: flex;  
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.note {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: #8888ff;
+    margin: 15px;
+}
+.apercu {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    background-color: #8888ff;
+    position: fixed;
+    bottom: 100px;
+    right: 70px;
+    border: 2px solid red;
+    transform: translateX(500px);
+    transition: transform 0.5s;
+}
+#custom {
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+}
