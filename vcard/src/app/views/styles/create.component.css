@@ -1,8 +1,30 @@
-label {
+.create-card {
+    width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg');
+    background-size: cover;
+  }
+
+.edit-card{
+    width: 400px;
+
+}
+
+.img-edit-card .button{
+    
+    width: 400px;
+    height: 570px;
+    margin-bottom: 15px;
+
+}
+
+  /* label {
     display: flex;
     justify-content: space-between;
-}
-#form {
+} */
+/* #form {
     width: 250px;
     position: fixed;
     bottom: 10px;
@@ -15,12 +37,12 @@ label {
     position: fixed;
     bottom: 80px;
     right: 70px;
-}
-#form.display, .apercu.display {
+} */
+/* #form.display, .apercu.display {
     transform: translateX(0px);
-}
+} */
 
-#add_button{
+/* #add_button{
     position: fixed;
     z-index : 1;
     bottom: 10px;
@@ -33,19 +55,15 @@ label {
     font-size: 42px;
     text-align: center;
 
-}
+} */
+
+
 #container {
     display: flex;  
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.note {
-    width: 150px;
-    height: 150px;
-    text-align: center;
-    background-color: #8888ff;
-    margin: 15px;
-}
+
 .apercu {
     width: 150px;
     height: 150px;

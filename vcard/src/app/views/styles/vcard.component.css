@@ -1,0 +1,10 @@
+.example-card {
+    width: 400px;
+  }
+  
+  .example-header-image {
+    background-image: url('http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg');
+    background-size: cover;
+  }
+  
+  

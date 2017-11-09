@@ -29,13 +29,13 @@ export class DetailComponent {
 
     getNote( id: number){
 
-        this.service.getAllNotes().then( (data) =>{
+        this.service.getAllCards().then( (data) =>{
             
             for( const dnote of data.json() ){
                 
                 if ( dnote.id === id){
                     this.thevcard = new Vcard ( dnote.id, dnote.title, dnote.content);
-                    this.thevcard.setDate( new Date( dnote.date));
+                    
                 }
             }
 

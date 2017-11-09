@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vcard } from '../class/Vcard';
 
 @Component({
-    selector: 'app-vcard',
-    templateUrl: '../views/vcard.component.html',
-    styleUrls: ['../views/styles/vcard.component.css']
+    selector: 'app-create',
+    templateUrl: '../views/create.component.html',
+    styleUrls: ['../views/styles/create.component.css']
 })
-export class VcardComponent {
+export class CreateComponent {
 
     
 

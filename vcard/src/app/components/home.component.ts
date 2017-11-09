@@ -5,9 +5,8 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-home',
-    template: `
-   <h1> Bienvenue </h1>
-   `
+    templateUrl: '../views/home.component.html',
+    styleUrls: ['../views/styles/home.component.css']
 })
 export class HomeComponent {
 

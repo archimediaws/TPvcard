@@ -1,12 +1,21 @@
+
+
 import { Routes } from '@angular/router';
 
 import {VcardsComponent} from './components/vcards.component';
 import { HomeComponent } from './components/home.component';
 import { DetailComponent } from './components/detail.component';
-
+import {VcardComponent} from './components/vcard.component';
+import { CreateComponent } from './components/create.component';
 
 
 export const appRoutes: Routes = [
+
+
+{ path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+},
 
 {
     path:'home',
@@ -14,12 +23,22 @@ export const appRoutes: Routes = [
     
 },
 {
-    path:'notes',
+    path:'vcards',
     component: VcardsComponent,
     
 },
 {
-    path:'note/:id',
+    path:'vcard',
+    component: VcardComponent,
+    
+},
+{
+    path:'createvcard',
+    component: CreateComponent,
+    
+},
+{
+    path:'vcard/:id',
     component: DetailComponent,
     
 }

@@ -1,7 +1,0 @@
-<span (click)="parentRemove()">X</span>
-<h4 [appHighlight]="color" > {{ thenote.title | uppercase }} </h4>
-<p> {{ thenote.content | lowercase }} </p>
-<h6 [appHighlight]="color" ><i> {{ thenote.date | date:'dd-MM-yyyy' }} </i></h6>
-<p> {{ index | nieme:'note' }} </p>
-<p> {{ thenote | resume }} </p>
-<a routerLink="/note/{{thenote.id}}">voir detail</a>

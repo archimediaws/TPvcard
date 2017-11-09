@@ -4,44 +4,44 @@ import { Color } from '../class/Color';
 import { VcardsService } from '../services/vcards.service';
 
 @Component({
-    selector: 'app-root',
+    selector: 'app-vcards',
     templateUrl: '../views/vcards.component.html',
     styleUrls: ['../views/styles/vcards.component.css'],
     providers: [VcardsService] // On défini la liste des services à injecter dans le constructeur
 })
 export class VcardsComponent {
 
-    public displayForm: boolean = false;
-    public notes: Vcard[] = [];
+    // public displayForm: boolean = false;
+    public vcards: Vcard[] = [];
 
     public search: string = '';
 
     public color: Color = new Color();
 
-    public selected_note: Vcard;
+    public selected_card: Vcard;
 
-    constructor( private notesservice: VcardsService ) {
-        this.getNotes();
+    constructor( private cardsservice: VcardsService ) {
+        this.getCards();
     }
 
-    getNotes() {
-        this.notesservice.getAllNotes().then( (data) => {
+    getCards() {
+        this.cardsservice.getAllCards().then( (data) => {
 
-            for ( const dnote of data.json() ){
-                this.addNote( dnote.id, dnote.title, dnote.content, dnote.date );
+            for ( const dcard of data.json() ){
+                this.addCard( dcard.id, dcard.title, dcard.content );
             }
 
         } );
     }
 
-    addNote( id: number, title: string, content: string, datestr: string ) {
-        const note: Vcard = new Vcard(id, title, content);
-        note.setDate( new Date(datestr) );
-        this.notes.push( note );
+    addCard( id: number, title: string, content: string ) {
+        const card: Vcard = new Vcard(id, title, content);
+        
+        this.vcards.push( card );
     }
 
     remove( i: number ) {
-        this.notes.splice( i, 1 );
+        this.vcards.splice( i, 1 );
     }
 
 }

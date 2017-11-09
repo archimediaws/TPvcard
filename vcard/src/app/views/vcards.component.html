@@ -1,0 +1,54 @@
+<!-- <label [appHighlight]="'red'" > Search : </label><input type="text" [(ngModel)]="search" />  -->
+
+
+<div class="grid-cards" *ngFor="let card of vcards;">
+
+        <app-vcard [thevcard]="card"></app-vcard>
+        <mat-grid-list cols="2" rowHeight="3:4">
+                <mat-grid-tile><div class="grid-center"><h2>titre</h2><button mat-button>VOIR</button> <button mat-button>SUPPRIMER</button></div></mat-grid-tile>
+                <mat-grid-tile>20</mat-grid-tile>
+                <mat-grid-tile>30</mat-grid-tile>
+                <mat-grid-tile>40</mat-grid-tile>
+              </mat-grid-list>
+</div>
+
+<!-- <div id="container"> -->
+
+    <!-- <div *ngFor="let card of vcards;" >
+
+         
+        <app-vcard  [thevcard]="card"  ></app-vcard>
+
+    </div> -->
+
+    <!-- <div id="add_button" (click)="displayForm = !displayForm" > + </div> -->
+
+    <!-- <div id="form" [class.display]="displayForm" >
+        <label>
+            <span>Titre :</span>
+          
+            <input type="text" name="title" #inputTitle />
+        </label>
+        <label>
+            <span>Contenu :</span>
+            <input type="text" name="content" #inputContent />
+        </label>
+        <input type="text" id="datepicker" #datepicker />
+        <button (click)="addNote( 0, inputTitle.value, inputContent.value, datepicker.value )" > Ajouter </button>
+    </div>
+
+    <div id="edit" *ngIf="selected_note">
+        <label>
+            <span>Titre :</span>
+            <input type="text" name="title" [(ngModel)]="selected_note.title" />
+        </label>
+        <label>
+            <span>Contenu :</span>
+            <input type="text" name="content" [(ngModel)]="selected_note.content" />
+        </label>
+    </div>
+
+    <app-color id="custom" (event)="color=$event" ></app-color> -->
+
+<!-- </div> -->
+

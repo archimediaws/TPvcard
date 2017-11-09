@@ -1,0 +1,78 @@
+    
+    <div id="container">
+
+            <div id="editcard">
+                    <mat-card class="edit-card">
+                            <mat-card-header>
+                            <mat-card-title>Titre: <input type="text" name="title" #inputTitle /> </mat-card-title>
+                            </mat-card-header>
+                            <div class="img-edit-card">
+                            <!-- <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg" alt="Photo de moi"> -->
+                            <button mat-button class="button">Ajouter une photo</button>
+                            </div>
+                            <mat-card-content>
+                              <p>Description: <input type="text" name="content" #inputContent /></p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <button mat-button>EFFACER</button>
+                            </mat-card-actions>
+                          </mat-card>
+                </div>
+
+
+           <div id="viewcard">
+            <mat-card class="create-card">
+                    <mat-card-header>
+                     
+                      <mat-card-title>mon titre </mat-card-title>
+                      
+                    </mat-card-header>
+                    <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg" alt="Photo de moi">
+                    <mat-card-content>
+                      <p>
+                            ma Description
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                            <button mat-button>SAUVEGARDER</button>
+                            
+                          </mat-card-actions>
+                  </mat-card>
+            </div>
+           
+            
+        
+            <!-- <div id="form" >
+                <label>
+                    <span>Titre :</span>
+                   
+                    <input type="text" name="title" #inputTitle />
+                </label>
+                <label>
+                    <span>Contenu :</span>
+                    <input type="text" name="content" #inputContent />
+                </label>
+                <input type="text" id="datepicker" #datepicker />
+                <button (click)="addNote( 0, inputTitle.value, inputContent.value, datepicker.value )" > Ajouter </button>
+            </div>
+        
+
+
+
+            <div id="edit" *ngIf="selected_note">
+                <label>
+                    <span>Titre :</span>
+                    <input type="text" name="title" [(ngModel)]="selected_note.title" />
+                </label>
+                <label>
+                    <span>Contenu :</span>
+                    <input type="text" name="content" [(ngModel)]="selected_note.content" />
+                </label>
+            </div> -->
+        
+            
+        
+    </div>
+    
+    
+  

@@ -1,10 +1,12 @@
+
 export class Vcard {
     
         
         public id:number;
         public title: string;
+        // public img:File;
         public content: string;
-        public date: Date;
+        
     
         constructor( id: number, title: string, content: string ) {
     
@@ -12,8 +14,8 @@ export class Vcard {
             this.id = id,
             this.title = title;
             this.content = content;
-            this.date = new Date();
-        }
+            // this.img = img;
+        }  
     
         getTitle(): string {
             return this.title;
@@ -23,9 +25,9 @@ export class Vcard {
             return this.content;
         }
     
-        setDate( date: Date ) {
-            this.date = date;
-        }
+        // getImg(): File {
+        //     return this.img;
+        // }
     
     }
     
