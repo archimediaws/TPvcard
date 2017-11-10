@@ -14,7 +14,7 @@ export class VcardsComponent {
     // public displayForm: boolean = false;
     public vcards: Vcard[] = [];
 
-    public search: string = '';
+    // public search: string = '';
 
     public color: Color = new Color();
 
@@ -28,14 +28,14 @@ export class VcardsComponent {
         this.cardsservice.getAllCards().then( (data) => {
 
             for ( const dcard of data.json() ){
-                this.addCard( dcard.id, dcard.title, dcard.content );
+                this.addCard( dcard.id, dcard.title, dcard.content, dcard.img );
             }
 
         } );
     }
 
-    addCard( id: number, title: string, content: string ) {
-        const card: Vcard = new Vcard(id, title, content);
+    addCard( id: number, title: string, content: string, img:string ) {
+        const card: Vcard = new Vcard(id, title, content, img);
         
         this.vcards.push( card );
     }

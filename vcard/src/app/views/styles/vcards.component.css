@@ -1,13 +1,22 @@
 
-
+.grid-cards{
+  width: 100%;
+}
 mat-grid-tile {
     background: lightblue;
+    height:10%;
   }
 
-.grid-center h2{
-  display: flex;
-  align-content: center;
+.grid-center {
+  
   justify-content: center;
   
 }
 
+.grid-center h2 {
+  width: 100%;
+display: flex;
+  align-content: center;
+  justify-content: center;
+  
+}

@@ -4,17 +4,28 @@
             <div id="editcard">
                     <mat-card class="edit-card">
                             <mat-card-header>
-                            <mat-card-title>Titre: <input type="text" name="title" #inputTitle /> </mat-card-title>
+                            <mat-card-title>Titre: <input type="text" name="title" #inputTitle  [(ngModel)]="title"/> </mat-card-title>
                             </mat-card-header>
-                            <div class="img-edit-card">
-                            <!-- <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg" alt="Photo de moi"> -->
-                            <button mat-button class="button">Ajouter une photo</button>
-                            </div>
+                            <!-- <div class="img-edit-card">
+                            <button mat-button class="button" #addImg >Ajouter une photo</button>
+                            </div> -->
+                            <img-select>
+                            
+                            <mat-form-field>
+                                 <mat-select placeholder="Choisir une image" [(ngModel)]="selectedValue" name="img">
+                                    <mat-option *ngFor="let img of imgs" [value]="img.value">
+                                      {{img.viewValue}}
+                                    </mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+
+                            </img-select>
                             <mat-card-content>
-                              <p>Description: <input type="text" name="content" #inputContent /></p>
+                              <p>Description: <input type="text" name="content" #inputContent [(ngModel)]="content" /></p>
                             </mat-card-content>
                             <mat-card-actions>
-                              <button mat-button>EFFACER</button>
+                              <button mat-button (click)="postCard()" >SAUVEGARDER</button>
+                              <button mat-button>ANNULER</button> <!-- init() les imputs -->
                             </mat-card-actions>
                           </mat-card>
                 </div>
@@ -24,13 +35,14 @@
             <mat-card class="create-card">
                     <mat-card-header>
                      
-                      <mat-card-title>mon titre </mat-card-title>
+                      <mat-card-title> {{title}} </mat-card-title>
                       
                     </mat-card-header>
-                    <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/me2.jpg" alt="Photo de moi">
+                    <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/poke03.jpg" alt="Photo">
+                    <!-- <img mat-card-image src="{{img}}" alt="Photo"> -->
                     <mat-card-content>
                       <p>
-                            ma Description
+                            {{content}}
                       </p>
                     </mat-card-content>
                     <mat-card-actions>

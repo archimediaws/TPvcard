@@ -1,14 +1,31 @@
+import { SelectImg } from './selectImg.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vcard } from '../class/Vcard';
+import { VcardsService } from '../services/vcards.service';
+
 
 @Component({
     selector: 'app-create',
     templateUrl: '../views/create.component.html',
-    styleUrls: ['../views/styles/create.component.css']
+    styleUrls: ['../views/styles/create.component.css'],
+    providers: [VcardsService] 
 })
 export class CreateComponent {
 
+    public title:string;
+    public content:string;
+    public img:string;
+
+    constructor( private cardsservice: VcardsService ) {
     
+        ;
+        
+    }
+
+    postCard(){
+    this.cardsservice.addUneCard(this.title, this.content, this.img);
+    console.log(this.title);
+    }
 
     @Input()
     public color;

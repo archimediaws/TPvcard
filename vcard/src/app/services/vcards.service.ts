@@ -20,11 +20,18 @@ export class VcardsService {
     }
 
     
-    // adduneNote(): Promise<any> {
-    //     const body = {title: 'Test'};
-    //             return this.http.post(this.url, body)
-    //                 .toPromise();
+    addUneCard(title:string, content:string, img:string):any {
+        const body = {title: title, content: content, img : img};
+                return this.http.post(this.url, body)
+                    .subscribe(
+                        res => {
+                    console.log(res);
+                        },
+                        err =>{
+                    console.log(err);
+                        }
+                    );
         
-    //         }
+            }
 
 }

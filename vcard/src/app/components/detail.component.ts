@@ -10,7 +10,7 @@ import 'rxjs/add/operator/switchMap';
     <div *ngIf="thevcard">
     <h4> {{ thevcard.title | uppercase }} </h4>
     <p> {{ thevcard.content | lowercase }} </p>
-    <h6><i> {{ thevcard.date | date:'dd-MM-yyyy' }} </i></h6>
+    <h6><i> {{ thevcard.img }} </i></h6>
     </div>
    `,
    providers: [VcardsService] // on injecte le service 
@@ -31,10 +31,10 @@ export class DetailComponent {
 
         this.service.getAllCards().then( (data) =>{
             
-            for( const dnote of data.json() ){
+            for( const dcard of data.json() ){
                 
-                if ( dnote.id === id){
-                    this.thevcard = new Vcard ( dnote.id, dnote.title, dnote.content);
+                if ( dcard.id === id){
+                    this.thevcard = new Vcard ( dcard.id, dcard.title, dcard.content, dcard.img);
                     
                 }
             }

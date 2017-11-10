@@ -1,11 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1 class="title">My Cards</h1>
-    <nav>
-    <a routerLink="/home" routerLinkActive="active">Bienvenue</a>
-    <a routerLink="/vcards" routerLinkActive="active">Mes Cartes</a>
-    <a routerLink="/createvcard" routerLinkActive="active">Créer une Carte</a>
-    </nav>
+<h2 class="title">My Cards</h2>
+
+<div id="navbutton">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        
+        <span><a routerLink="/home" routerLinkActive="active"><button mat-menu-item><mat-icon>home</mat-icon>Bienvenue</button></a></span>
+        <span><a routerLink="/vcards" routerLinkActive="active"><button mat-menu-item><mat-icon>list</mat-icon>Mes cartes</button></a></span>
+        <span><a routerLink="/createvcard" routerLinkActive="active"><button mat-menu-item><mat-icon>note_add</mat-icon>Créer une carte</button></a></span>
+        <span><a routerLink="/sign-in" routerLinkActive="active"><button mat-menu-item><mat-icon>account_circle</mat-icon>Créer un compte</button></a></span>
+        <span><a routerLink="/login" routerLinkActive="active"><button mat-menu-item><mat-icon>fingerprint</mat-icon>Login</button></a></span>
+        <span><a routerLink="/deconnexion" routerLinkActive="active"><button mat-menu-item><mat-icon>highlight_off</mat-icon>Deconnexion</button></a></span>   
+        
+      </mat-menu>
+</div>      
     <br>
    <router-outlet></router-outlet>
+  
     
 

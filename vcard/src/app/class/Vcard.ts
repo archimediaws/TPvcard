@@ -4,17 +4,17 @@ export class Vcard {
         
         public id:number;
         public title: string;
-        // public img:File;
+        public img:string;
         public content: string;
         
     
-        constructor( id: number, title: string, content: string ) {
+        constructor( id: number, title: string, content: string, img:string ) {
     
            
             this.id = id,
             this.title = title;
             this.content = content;
-            // this.img = img;
+            this.img = img;
         }  
     
         getTitle(): string {
@@ -25,9 +25,9 @@ export class Vcard {
             return this.content;
         }
     
-        // getImg(): File {
-        //     return this.img;
-        // }
+        getImg(): string {
+            return this.img;
+        }
     
     }
     

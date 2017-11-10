@@ -1,5 +1,6 @@
 
 
+
 import { Routes } from '@angular/router';
 
 import {VcardsComponent} from './components/vcards.component';
@@ -7,7 +8,9 @@ import { HomeComponent } from './components/home.component';
 import { DetailComponent } from './components/detail.component';
 import {VcardComponent} from './components/vcard.component';
 import { CreateComponent } from './components/create.component';
-
+import { SigninComponent } from './components/signin.component';
+import { LoginComponent } from './components/login.component';
+import { DeconnexionComponent } from './components/deconnexion.component';
 
 export const appRoutes: Routes = [
 
@@ -33,15 +36,31 @@ export const appRoutes: Routes = [
     
 },
 {
+    path:'vcard/:id',
+    component: DetailComponent,
+    
+},
+{
     path:'createvcard',
     component: CreateComponent,
     
 },
 {
-    path:'vcard/:id',
-    component: DetailComponent,
+    path:'sign-in',
+    component: SigninComponent,
+    
+},
+{
+    path:'login',
+    component: LoginComponent,
+    
+},
+{
+    path:'deconnexion',
+    component: DeconnexionComponent,
     
 }
+
 
 ]
 

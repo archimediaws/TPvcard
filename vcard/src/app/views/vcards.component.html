@@ -3,13 +3,17 @@
 
 <div class="grid-cards" *ngFor="let card of vcards;">
 
-        <app-vcard [thevcard]="card"></app-vcard>
-        <mat-grid-list cols="2" rowHeight="3:4">
-                <mat-grid-tile><div class="grid-center"><h2>titre</h2><button mat-button>VOIR</button> <button mat-button>SUPPRIMER</button></div></mat-grid-tile>
-                <mat-grid-tile>20</mat-grid-tile>
-                <mat-grid-tile>30</mat-grid-tile>
-                <mat-grid-tile>40</mat-grid-tile>
-              </mat-grid-list>
+        
+        <mat-grid-list cols="1" rowHeight="650">
+
+                <mat-grid-tile>
+                    <div class="grid-center"><h2>{{card.title}}</h2>
+                    <app-vcard [thevcard]="card"></app-vcard>
+                    </div>
+                    
+                </mat-grid-tile>
+              
+        </mat-grid-list>
 </div>
 
 <!-- <div id="container"> -->

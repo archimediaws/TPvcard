@@ -1,4 +1,6 @@
 
+
+
 import { AppComponent } from './components/app.component';
 import {RouterModule} from '@angular/router';
 import { appRoutes } from './routes';
@@ -10,18 +12,22 @@ import { CreateComponent } from './components/create.component';
 import { ColorComponent } from './components/color.component';
 import { DetailComponent } from './components/detail.component';
 import { LoginComponent } from './components/login.component';
+import { SigninComponent } from './components/signin.component';
+import { DeconnexionComponent } from './components/deconnexion.component';
 
+import { SelectImg } from './components/selectImg.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'; // Pour les requêtes ajax avec angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // animation
-import { MatCardModule, MatListModule, MatGridListModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatGridListModule, MatMenuModule, MatIconModule, MatSelectModule } from '@angular/material';
 
 import { FilterPipe } from './pipes/filter.pipe';
 
 import { HighlightDirective } from './directives/highlight.directive';
+import { MatMenuTriggerForDirective } from './directives/matMenuTriggerFor.directive';
 
 
 
@@ -36,10 +42,14 @@ import { HighlightDirective } from './directives/highlight.directive';
     ColorComponent,
     FilterPipe,
     HighlightDirective,
+    MatMenuTriggerForDirective,
     HomeComponent,
     DetailComponent,
     CreateComponent,
-    LoginComponent
+    LoginComponent,
+    SigninComponent,
+    DeconnexionComponent,
+    SelectImg
 
   ],
   imports: [
@@ -50,6 +60,9 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
     RouterModule.forRoot(
       appRoutes
       // { enableTracing: true } // <-- debugging purposes only
