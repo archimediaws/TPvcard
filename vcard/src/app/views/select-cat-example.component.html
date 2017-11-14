@@ -1,10 +1,20 @@
                             <mat-form-field>
-                                 <mat-select placeholder="Choisir une categorie" [(ngModel)]="selectedValue" name="img">
-                                    <mat-option *ngFor="let cat of cats" [value]="cat.value" (click)="selectedCat()">
+                                 <mat-select placeholder="Choisir une categorie" [(ngModel)]="selectedValue" name="img" (change)="selectedCatId()">
+                                    
+                                    <mat-option *ngFor="let cat of cats" [value]="cat.value" >
                                       {{cat.viewValue}} 
                                     </mat-option>
                                   </mat-select>
                             </mat-form-field>
+
+                            <!-- <mat-form-field>
+                                <mat-select placeholder="Choisir une categorie" [(ngModel)]="selectedValueName" name="img" (change)="selectedCatName()">
+                                   
+                                   <mat-option *ngFor="let cat of cats" [value]="cat.viewValue" >
+                                     {{cat.viewValue}} 
+                                   </mat-option>
+                                 </mat-select>
+                           </mat-form-field> -->
 
 
                              

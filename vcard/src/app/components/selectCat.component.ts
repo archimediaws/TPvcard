@@ -10,7 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SelectCat {
 
   selectedValue: string;
-  
+  // selectedValueName: string;
   cats = [
     {value:'1', viewValue: 'catPoke01'},
     {value:'2', viewValue: 'catPoke02'},
@@ -21,10 +21,17 @@ export class SelectCat {
 
   @Output() selectedValueCat = new EventEmitter();
 
-  selectedCat(){
+  selectedCatId(){
     this.selectedValueCat.emit({
      value: this.selectedValue
     });
   }
 
+  // @Output() selectedValueCatName = new EventEmitter();
+
+  // selectedCatName(){
+  //   this.selectedValueCatName.emit({
+  //    value: this.selectedValueName
+  //   });
+  // }
 }

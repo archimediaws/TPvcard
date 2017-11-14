@@ -17,14 +17,15 @@
           </mat-card-header>
           <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/{{ thevcard.cardimg | lowercase }}" alt="{{ thevcard.cardtitle | lowercase }}">
           <mat-card-content>
-              <p>{{ thevcard.categoryId }}</p>
+              <p>{{ thevcard.categoryId }}</p> 
             <p>
               {{ thevcard.cardcontent | lowercase }}
             </p>
           </mat-card-content>
           <mat-card-actions>
             <a routerLink="/vcard/{{thevcard.id}}"><button mat-button>MODIFIER</button></a>
-            <button mat-button>SUPPRIMER</button>
+            <!-- <button mat-button (click)="postCard()">MODIFIER</button> -->
+            <button mat-button (click)="deleteCard()">SUPPRIMER</button>
           </mat-card-actions>
         </mat-card>
 

@@ -1,6 +1,7 @@
 <?php 
 header("Access-Control-Allow-Origin:*", false);
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authoriration");
+header("Access-Control-Allow-Methods: GET, PUT, POST, DELETE");
 
 require "flight/Flight.php"; 
 require "autoload.php";
@@ -173,9 +174,10 @@ Flight::route("GET /card/@id", function( $id ){
 
 });
 
-Flight::route("OPTIONS /card", function(){ echo "{}"; });
 
 // CARDS POST CARD / Créer une card
+Flight::route("OPTIONS /card", function(){ echo "{}"; }); // pour angular declaration de la route OPTION
+
 Flight::route("POST /card", function(){
 
     $cardtitle = Flight::request()->data["cardtitle"];
@@ -300,6 +302,8 @@ Flight::route("PUT /card/@id", function( $id ){
     });
 
 // CARD DELETE / Supprimer la carte à l'@id
+Flight::route("OPTIONS /card/@id", function(){ echo "{}"; }); // pour angular declaration de la route OPTION
+
 Flight::route("DELETE /card/@id", function( $id ){
 
     $status = [

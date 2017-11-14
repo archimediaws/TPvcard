@@ -13,7 +13,7 @@
 
                 <mat-grid-tile>
                     <div class="grid-center"><h2>{{card.title}}</h2>
-                    <app-vcard [thevcard]="card"></app-vcard>
+                    <app-vcard [thevcard]="card" (event)="delete($event)" ></app-vcard>
                     </div>
                     
                 </mat-grid-tile>

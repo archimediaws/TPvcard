@@ -1,4 +1,5 @@
 import { SelectImg } from './selectImg.component';
+import { SelectCat } from './selectCat.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vcard } from '../class/Vcard';
 import { VcardsService } from '../services/vcards.service';
@@ -19,6 +20,8 @@ export class CreateComponent {
     public cardimg:string;
     public categoryId:number;
     
+    // public categoryname:string;
+
 
     constructor( private cardsservice: VcardsService ) {
       
@@ -31,7 +34,7 @@ export class CreateComponent {
     @Input()
     public color;
    
-
+ 
     @Input()
     public thevcard: Vcard;
 
@@ -54,4 +57,8 @@ export class CreateComponent {
     myValueCat(event){
         this.categoryId = event.value;
     }
+
+    // myValueCatName(event){
+    //     this.categoryname = event.value;
+    // }
 }

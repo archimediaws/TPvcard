@@ -40,8 +40,17 @@ export class VcardsComponent {
         this.vcards.push( card );
     }
 
-    remove( i: number ) {
-        this.vcards.splice( i, 1 );
+    delete( id: number ) {
+        for( const key in this.vcards ){
+            
+            let dcard: Vcard = this.vcards[key];
+
+            if ( dcard.id === id){
+               
+                this.vcards.splice( parseInt(key) , 1 );
+            }
+        }
+        
     }
 
 }

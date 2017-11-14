@@ -6,39 +6,36 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-detail',
-    template: `
-    <div *ngIf="thevcard">
-    <h4> {{ thevcard.title | uppercase }} </h4>
-    <p> {{ thevcard.content | lowercase }} </p>
-    <h6><i> {{ thevcard.img }} </i></h6>
-    </div>
-   `,
+    templateUrl:'../views/detail.component.html',
    providers: [VcardsService] // on injecte le service 
 })
 export class DetailComponent {
 
-    thevcard: Vcard;
-
+    public thevcard: Vcard;
+    
+    public test : string = "test";
+    
 
     constructor( private route: ActivatedRoute, private service: VcardsService){
 
-       const id: number =  parseInt(this.route.snapshot.paramMap.get('id'), 10);
-        this.getNote( id);
-
+       const id: number =  parseInt(this.route.snapshot.paramMap.get('id'));
+        this.getCard( id);
+        
     }
-
-    getNote( id: number){
+    
+    getCard( id: number){
 
         this.service.getAllCards().then( (data) =>{
             
             for( const dcard of data.json() ){
-                
-                if ( dcard.id === id){
-                    this.thevcard = new Vcard ( dcard.id, dcard.title, dcard.content, dcard.img, dcard.cat);
+                console.log(data.json());
+                if ( parseInt(dcard.id) === id ){
+                    this.thevcard = new Vcard ( dcard.id, dcard.cardtitle, dcard.cardcontent, dcard.cardimg, dcard.categoryId);
                     
                 }
             }
-
+            
         } );
     }
+    
 }

@@ -34,10 +34,17 @@ export class VcardsService {
         
             }
     
-    // deleteCard(): Promise<any> {
+    deleteUneCard(id:number): any {
 
-    //     return this.http.get(this.url+'card/'+id)
-    //     .toPromise();
+        return this.http.delete(this.url+'card/'+id)
+        .subscribe(
+            res => {
+        console.log(res.json());
+            },
+            err =>{
+        console.log(err);
+            }
+        );
 
-    // }
+    }
 }
