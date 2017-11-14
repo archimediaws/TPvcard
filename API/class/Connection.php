@@ -7,7 +7,7 @@ class Connection {
       
         if( empty( self::$connection ) ){    
             self::$connection = new PDO(
-                "mysql:dbname=vins;host=localhost",
+                "mysql:dbname=cards;host=localhost",
                 "root",
                 ""
             );

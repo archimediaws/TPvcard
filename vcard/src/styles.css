@@ -16,6 +16,7 @@ h1 {
   body, input[text], button {
     color: #888;
     font-family: Cambria, Georgia;
+    background-color: rgb(204, 204, 216);
   }
   a {
     cursor: pointer;
@@ -59,3 +60,4 @@ h1 {
   nav a.active {
     color: #039be5;
   }
+

@@ -34,7 +34,7 @@ export class DetailComponent {
             for( const dcard of data.json() ){
                 
                 if ( dcard.id === id){
-                    this.thevcard = new Vcard ( dcard.id, dcard.title, dcard.content, dcard.img);
+                    this.thevcard = new Vcard ( dcard.id, dcard.title, dcard.content, dcard.img, dcard.cat);
                     
                 }
             }

@@ -15,11 +15,11 @@ export class HighlightDirective {
     }
 
     @HostListener('mouseenter') onmouseenter() {
-        this.$element.css('color', this.highlightcolor);
+        this.$element.css('background-color', this.highlightcolor);
     }
 
     @HostListener('mouseleave') onmouseleave() {
-        this.$element.css('color', 'inherit');
+        this.$element.css('background-color', 'inherit');
     }
 
 }

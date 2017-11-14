@@ -3,31 +3,36 @@ export class Vcard {
     
         
         public id:number;
-        public title: string;
-        public img:string;
-        public content: string;
+        public cardtitle: string;
+        public cardimg:string;
+        public cardcontent: string;
+        public categoryId:number;
         
     
-        constructor( id: number, title: string, content: string, img:string ) {
+        constructor( id: number, cardtitle: string, cardcontent: string, cardimg:string, categoryId:number) {
     
            
             this.id = id,
-            this.title = title;
-            this.content = content;
-            this.img = img;
+            this.cardtitle = cardtitle;
+            this.cardcontent = cardcontent;
+            this.cardimg = cardimg;
+            this.categoryId = categoryId;
         }  
     
-        getTitle(): string {
-            return this.title;
+        getCardtitle(): string {
+            return this.cardtitle;
         }
     
-        getContent(): string {
-            return this.content;
+        getCardcontent(): string {
+            return this.cardcontent;
         }
     
-        getImg(): string {
-            return this.img;
+        getCardimg(): string {
+            return this.cardimg;
         }
-    
+
+        getCategoryId(): number {
+            return this.categoryId;
+        }
     }
     

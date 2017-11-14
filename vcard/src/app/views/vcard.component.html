@@ -12,13 +12,14 @@
         <mat-card class="example-card">
           <mat-card-header>
             
-            <mat-card-title>{{ thevcard.title | uppercase }}</mat-card-title>
+            <mat-card-title>{{ thevcard.cardtitle | uppercase }}</mat-card-title>
             
           </mat-card-header>
-          <img mat-card-image src="{{ thevcard.img | lowercase }}" alt="Photo">
+          <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/{{ thevcard.cardimg | lowercase }}" alt="{{ thevcard.cardtitle | lowercase }}">
           <mat-card-content>
+              <p>{{ thevcard.categoryId }}</p>
             <p>
-              {{ thevcard.content | lowercase }}
+              {{ thevcard.cardcontent | lowercase }}
             </p>
           </mat-card-content>
           <mat-card-actions>

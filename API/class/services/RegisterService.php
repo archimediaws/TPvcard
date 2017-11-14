@@ -3,7 +3,7 @@ class RegisterService extends Service
 {
     private $params;
     private $error;
-    private $vendor;
+    private $user;
     public function getParams()
     {
         return $this->params;
@@ -20,19 +20,19 @@ class RegisterService extends Service
     {
         $this->error=$error;
     }
-    public function getVendor()
+    public function getUser()
     {
-        return $this->vendor;
+        return $this->user;
     }
-    public function setVendor($vendor)
+    public function setUser($user)
     {
-        $this->vendor=$vendor;
+        $this->user=$user;
     }
     public function launchControls()
         {
    
-        if(empty($this->params['vendorname'])){
-            $this->error['vendorname'] = 'Le nom de l\'utilisateur n\'est pas renseigner';
+        if(empty($this->params['username'])){
+            $this->error['username'] = 'Le nom de l\'utilisateur n\'est pas renseigner';
         }
        
        
@@ -52,41 +52,41 @@ class RegisterService extends Service
         ;
         return $this->error;
         }
-        $this->vendor = $this->checkAll();
-        if(empty($this->vendor)){
-            $this->error['identifiant'] = 'vendeur deja existant';
+        $this->user = $this->checkAll();
+        if(empty($this->user)){
+            $this->error['identifiant'] = 'user deja existant';
             return $this->error;
         }
         else
         {
-            return $this->vendor;
+            return $this->user;
         }
         }
         
         public function checkAll(){
-            $vendorname = $this->params['vendorname'];
+            $username = $this->params['username'];
 
-            $prep = $this->connection->prepare('SELECT vendorname FROM vendors WHERE vendorname=:vendorname ');
+            $prep = $this->connection->prepare('SELECT username FROM user WHERE username=:username ');
 
             $prep->execute(array(
                 
-                'vendorname' => $this->params['vendorname'],
+                'username' => $this->params['username'],
             ));
-            $vendor = $prep->fetchAll(PDO::FETCH_ASSOC);
-            if(empty($vendor)){
+            $user = $prep->fetchAll(PDO::FETCH_ASSOC);
+            if(empty($user)){
                         
                         $uPassword = $this->params['uPassword'];
                         
-                        $objet = $this->connection->prepare('INSERT INTO vendors SET 
-                            vendorname=:vendorname,
+                        $objet = $this->connection->prepare('INSERT INTO user SET 
+                            username=:username,
                             uPassword=:uPassword
                             ');
                         $objet->execute(array(
-                        'vendorname' => $vendorname,
+                        'username' => $username,
                         'uPassword' => $uPassword
                         ));
-                        $vendor = true;
-                return $vendor;
+                        $user = true;
+                return $user;
             }
             return false;
         }

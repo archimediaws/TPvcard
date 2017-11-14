@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * @title Select in a form
@@ -8,11 +8,28 @@ import {Component} from '@angular/core';
   templateUrl: '../views/select-form-example.component.html',
 })
 export class SelectImg {
-  selectedValue: string;
 
+  selectedValue: string;
+ 
   imgs = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+    {value:'poke01.jpg', viewValue: 'poke01'},
+    {value:'poke02.jpg', viewValue: 'poke02'},
+    {value:'poke03.jpg', viewValue: 'poke03'},
+    {value:'poke04.jpg', viewValue: 'poke04'},
+    {value:'poke05.jpg', viewValue: 'poke05'},
+    {value:'poke06.jpg', viewValue: 'poke06'},
+    {value:'poke07.jpg', viewValue: 'poke07'}
   ];
+
+  @Input() monimg: string;
+
+  @Output() selectedValueImg = new EventEmitter();
+
+  selectedImg(){
+    console.log(this.selectedValue);
+    this.selectedValueImg.emit({
+     value: this.selectedValue
+    });
+  }
+
 }

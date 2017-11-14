@@ -34,19 +34,19 @@ class CategorieRepository extends Repository
         return $arrayObjet;
     }
 
-    public function getAllProductByCategorieId(Categorie $categorie){
+    public function getAllCardByCategorieId(Categorie $categorie){
         
                 // recupérer l'id de categorie en cours
                 $catId = $categorie->getId();
                 
-                $object = $this->connection->prepare('SELECT * FROM products WHERE categoryId=:categoryId');
+                $object = $this->connection->prepare('SELECT * FROM card WHERE categoryId=:categoryId');
                 $object->execute(array(
                     'categoryId'=> $catId
                 ));
-                $productScat = $object->fetchAll(PDO::FETCH_ASSOC);
+                $cardScat = $object->fetchAll(PDO::FETCH_ASSOC);
                 $arrayObjet = [];
-                foreach ($productScat as $productcat){
-                    $arrayObjet[] = new Product($productcat);
+                foreach ($cardScat as $cardcat){
+                    $arrayObjet[] = new Card($cardcat);
                 }
         
                 return $arrayObjet;

@@ -1,5 +1,6 @@
 .create-card {
     width: 400px;
+    background-color: blanchedalmond;
   }
   
   .example-header-image {
@@ -77,7 +78,8 @@
     transition: transform 0.5s;
 }
 #custom {
-    position: fixed;
-    bottom: 5px;
-    left: 10px;
+    display: flex;
+    justify-content: center;
+    padding:10px;
+   
 }

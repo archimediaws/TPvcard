@@ -3,7 +3,7 @@ class LoginService extends Service
 {
     private $params;
     private $error;
-    private $vendor;
+    private $user;
 
     public function getParams()
     {
@@ -21,13 +21,13 @@ class LoginService extends Service
     {
         $this->error=$error;
     }
-    public function getVendor()
+    public function getUser()
     {
-        return $this->vendor;
+        return $this->user;
     }
-    public function setVendor($vendor)
+    public function setUser($user)
     {
-        $this->vendor=$vendor;
+        $this->user=$user;
     }
     public function launchControls()
     
@@ -43,8 +43,8 @@ class LoginService extends Service
         {
         return $this->error;
         }
-        $this->vendor = $this->checkUsernamePassword();
-        if(empty($this->vendor)){
+        $this->user = $this->checkUsernamePassword();
+        if(empty($this->user)){
             $this->error['identifiant'] = 'Nom utilisateur ou le mot de passe incorrect';
             
             return $this->error;
@@ -52,7 +52,7 @@ class LoginService extends Service
         else
         { 
             
-            return $this->vendor;
+            return $this->user;
         }
         }
         
@@ -64,15 +64,15 @@ class LoginService extends Service
             // $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // $connexion->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
-            $objet = $this->connection->prepare('SELECT id, vendorname FROM vendors WHERE vendorname=:vendorname AND uPassword=:uPassword');
+            $objet = $this->connection->prepare('SELECT id, username FROM user WHERE username=:username AND uPassword=:uPassword');
             $objet->execute(array(
-                'vendorname' => $nom,
+                'username' => $nom,
                 'uPassword' => $password
                 
             ));
-            $vendor = $objet->fetch(PDO::FETCH_ASSOC);
-            if(empty($vendor)==false){           
-                return new Vendor($vendor);
+            $user = $objet->fetch(PDO::FETCH_ASSOC);
+            if(empty($user)==false){           
+                return new User($user);
             }
             return false;
         }

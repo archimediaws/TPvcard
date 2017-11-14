@@ -1,6 +1,6 @@
 <?php 
 header("Access-Control-Allow-Origin:*", false);
-// header("Access-Control-Allow-Origin: *", false);
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 require "flight/Flight.php"; 
 require "autoload.php";
@@ -109,13 +109,13 @@ Flight::route("DELETE /categorie/@id", function( $id ){
     });  
 
 
-    //CATEGORIE GET PRODUCTS / Récupere les produits de la categorie @id
+    //CATEGORIE GET CARD / Récupere les cards de la categorie @id
 
-    Flight::route("GET /products/cat/@id", function( $id ){
+    Flight::route("GET /cards/cat/@id", function( $id ){
         
         $status = [
             "success" => false,
-            "products" => false
+            "cards" => false
         ];
 
         $categorie = new Categorie();
@@ -123,11 +123,11 @@ Flight::route("DELETE /categorie/@id", function( $id ){
 
         $bddManager = Flight::get("BddManager");
         $repoCat = $bddManager->getCategorieRepository();
-        $products = $repoCat->getAllProductByCategorieId($categorie);
+        $cards = $repoCat->getAllCardByCategorieId($categorie);
 
-        if( $products != false ){
+        if( $cards != false ){
             $status["success"] = true;
-            $status["products"] = $products;
+            $status["cards"] = $cards;
         }
 
         echo json_encode( $status );
@@ -136,71 +136,72 @@ Flight::route("DELETE /categorie/@id", function( $id ){
 
 
 
-// routes PRODUCTS
+// routes CARDS
 
-//PRODUCTS GET PRODUCTS Lire tous les produits
-Flight::route("GET /products", function(){
+//CARDS GET CARDS Lire tous les cards
+Flight::route("GET /cards", function(){
 
     $bddManager = Flight::get("BddManager");
-    $repo = $bddManager->getProductRepository();
-    $products = $repo->getAll();
+    $repo = $bddManager->getCardRepository();
+    $cards = $repo->getAll();
 
-    echo json_encode ( $products );
+    echo json_encode ( $cards );
 
 });
 
-//PRODUCTS GET PRODUCT Récuperer le produit @id
-Flight::route("GET /product/@id", function( $id ){
+//CARDS GET CARD Récuperer le card @id
+Flight::route("GET /card/@id", function( $id ){
     
     $status = [
         "success" => false,
         "product" => false
     ];
 
-    $product = new Product();
-    $product->setId( $id );
+    $card = new Card();
+    $card->setId( $id );
 
     $bddManager = Flight::get("BddManager");
-    $repo = $bddManager->getProductRepository();
-    $produit = $repo->getById( $product );
+    $repo = $bddManager->getCardRepository();
+    $card = $repo->getById( $card );
 
-    if( $produit != false ){
+    if( $card != false ){
         $status["success"] = true;
-        $status["product"] = $produit;
+        $status["product"] = $card;
     }
 
     echo json_encode( $status );
 
 });
 
+Flight::route("OPTIONS /card", function(){ echo "{}"; });
 
+// CARDS POST CARD / Créer une card
+Flight::route("POST /card", function(){
 
-// PRODUCTS POST PRODUCT / Créer un produit
-Flight::route("POST /product", function(){
-
-    $productname = Flight::request()->data["productname"];
-    $content = Flight::request()->data["content"];
+    $cardtitle = Flight::request()->data["cardtitle"];
+    $cardcontent = Flight::request()->data["cardcontent"];
     // $userId = Flight::request()->data["userId"];
     $categoryId = Flight::request()->data["categoryId"];
+    $cardimg = Flight::request()->data["cardimg"];
 
     $status = [
         "success" => false,
         "id" => 0
     ];
 
-    if( strlen( $productname ) > 0 && strlen( $content ) > 0  && strlen( $categoryId ) > 0 ) {
+    if( strlen( $cardtitle ) > 0 && strlen( $cardcontent ) > 0  && strlen( $categoryId ) > 0 && strlen( $cardimg ) > 0 ) {
 
-        $product = new Product();
+        $card = new Card();
         
-        $product->setProductname( $productname );
-        $product->setContent( $content );
-       
+        $card->setCardtitle( $cardtitle );
+        $card->setCardcontent( $cardcontent );
+        $card->setCardimg( $cardimg );
         // $product->setUserId( $userId );
-        $product->setCategoryId( $categoryId );
+        $card->setCategoryId( $categoryId );
 
         $bddManager = Flight::get("BddManager");
-        $repo = $bddManager->getProductRepository();
-        $id = $repo->save( $product );
+        $repo = $bddManager->getCardRepository();
+        $id = $repo->save( $card );
 
         if( $id != 0 ){
             $status["success"] = true;
@@ -213,12 +214,14 @@ Flight::route("POST /product", function(){
     
 });
 
-// PRODUCT POST updater = modifier les datas d'un produit  = en POST 
+// CARD POST updater = modifier les datas d'une card  = en POST 
 
-Flight::route("POST /product/@id", function($id){
+Flight::route("POST /card/@id", function($id){
     
-        $productname = Flight::request()->data["productname"];
-        $content = Flight::request()->data["content"];
+        $cardtitle = Flight::request()->data["cardtitle"];
+        $cardcontent = Flight::request()->data["cardcontent"];
+        $categoryId = Flight::request()->data["categoryId"];
+        $cardimg = Flight::request()->data["cardimg"];
         
         // $userId = Flight::request()->data["userId"];
         
@@ -228,19 +231,20 @@ Flight::route("POST /product/@id", function($id){
         
         ];
     
-        if( strlen( $productname ) > 0 && strlen( $content ) > 0  ) {
+        if( strlen( $cardtitle ) > 0 && strlen( $cardcontent ) > 0 && strlen( $categoryId ) > 0 && strlen( $cardimg ) > 0 ) {
     
-            $product = new Product();
+            $card = new Card();
 
-            $product->setId($id);
-            $product->setProductname( $productname );
-            $product->setContent( $content );
-            
-            // $product->setUserId( $userId );
+            $card->setId($id);
+            $card->setCardtitle( $cardtitle );
+            $card->setCardcontent( $cardcontent );
+            $card->setCategoryId( $categoryId );
+            $card->setCardimg( $cardimg );
+            // $card->setUserId( $userId );
     
             $bddManager = Flight::get("BddManager");
-            $repo = $bddManager->getProductRepository();
-            $rowCount = $repo->save( $product );
+            $repo = $bddManager->getCardRepository();
+            $rowCount = $repo->save( $card );
     
             
             if( $rowCount == 1 ){
@@ -254,8 +258,8 @@ Flight::route("POST /product/@id", function($id){
     });
 
 
-// PRODUCTS PUT updater = modifier les datas d'un produit  = en PUT 
-Flight::route("PUT /product/@id", function( $id ){
+// CARDS PUT updater = modifier les datas d'une card  = en PUT 
+Flight::route("PUT /card/@id", function( $id ){
     
         //Pour récuperer des données PUT -> les données sont encodées en json string
         //avec ajax, puis décodées ici en php
@@ -266,22 +270,24 @@ Flight::route("PUT /product/@id", function( $id ){
             "success" => false
         ];
     
-        if( isset( $_PUT["productname"] ) && isset( $_PUT["content"] )   ){
+        if( isset( $_PUT["cardtitle"] ) && isset( $_PUT["cardcontent"] )  && isset( $_PUT["categoryId"]) && isset( $_PUT["cardimg"]) ){
     
-            $productname = $_PUT["productname"];
-            $content = $_PUT["content"];
-            
+            $cardtitle = $_PUT["cardtitle"];
+            $cardcontent = $_PUT["cardcontent"];
+            $categoryId = $_PUT["categoryId"];
+            $cardimg = $_PUT["cardimg"];
+
+            $card = new Card();
     
-            $product = new Product();
-    
-            $product->setId( $id );
-            $product->setProductname( $productname );
-            $product->setContent( $content );
-            
+            $card->setId( $id );
+            $card->setCardtitle( $cardtitle );
+            $card->setCardcontent( $cardcontent );
+            $card->setCategoryId( $categoryId );
+            $card->setCardimg( $cardimg );
     
             $bddManager = Flight::get("BddManager");
-            $repo = $bddManager->getProductRepository();
-            $rowCount = $repo->save( $product );
+            $repo = $bddManager->getCardRepository();
+            $rowCount = $repo->save( $card );
     
             if( $rowCount == 1 ){
                 $status["success"] = true;
@@ -293,19 +299,19 @@ Flight::route("PUT /product/@id", function( $id ){
     
     });
 
-// PRODUCTS DELETE / Supprimer le produit à l'@id
-Flight::route("DELETE /product/@id", function( $id ){
+// CARD DELETE / Supprimer la carte à l'@id
+Flight::route("DELETE /card/@id", function( $id ){
 
     $status = [
         "success" => false
     ];
 
-    $product = new Product();
-    $product->setId( $id );
+    $card = new Card();
+    $card->setId( $id );
 
     $bddManager = Flight::get("BddManager");
-    $repo = $bddManager->getProductRepository();
-    $rowCount = $repo->delete( $product );
+    $repo = $bddManager->getCardRepository();
+    $rowCount = $repo->delete( $card );
 
     if( $rowCount == 1 ){
         $status["success"] = true;
@@ -316,36 +322,36 @@ Flight::route("DELETE /product/@id", function( $id ){
 });
 
 
-// ROUTES VENDORS
+// ROUTES USER
 
-// VENDOR LOGIN 
+// USER LOGIN 
 
-Flight::route("POST /vendor/login", function(){ // route login vendor 
+Flight::route("POST /user/login", function(){ // route login user 
     
-        $vendorname = Flight::request()->data['vendorname'];
+        $username = Flight::request()->data['username'];
         $uPassword = Flight::request()->data['uPassword'];
 
         
-        $vendor = new Vendor();
-        $vendor->setVendorname ($vendorname);
-        $vendor->setUPassword ($uPassword);
+        $user = new User();
+        $user->setUsername ($username);
+        $user->setUPassword ($uPassword);
     
         $bddManager = Flight::get("BddManager");
-        $repo = $bddManager->getVendorRepository();
-        $findedVendor = $repo->getVendorByVendorname($vendor);
-        $repo->getAllProductsByVendorId($findedVendor);
+        $repo = $bddManager->getUserRepository();
+        $findedUser = $repo->getUserByUsername($user);
+        $repo->getAllCardsByUserId($findedUser);
     
         $status = [
             "success" => "",
             "error" => "",
-            "vendor" => ""
+            "user" => ""
         ];
     
-        if( $findedVendor == false ){
+        if( $findedUser == false ){
             $status["success"] = false;
             $status["error"] = "identifiant incorrect";
         }
-        else if( $findedVendor->getUPassword()  != $vendor->getUPassword()){
+        else if( $findedUser->getUPassword()  != $user->getUPassword()){
             
             $status["success"] = false;
             $status["error"] = "mot de passe incorrect";
@@ -353,7 +359,7 @@ Flight::route("POST /vendor/login", function(){ // route login vendor
         else {
             
             $status["success"] = true;
-            $status["vendor"] = $findedVendor;
+            $status["user"] = $findedUser;
         }
     
     
@@ -361,9 +367,9 @@ Flight::route("POST /vendor/login", function(){ // route login vendor
     
     });
 
-    // VENDORS REGISTER utilise le registerservice
+    // USER REGISTER utilise le registerservice
 
-Flight::route("POST /vendor/register", function(){ 
+Flight::route("POST /user/register", function(){ 
     
        
 
@@ -374,7 +380,7 @@ Flight::route("POST /vendor/register", function(){
         $status = [
             "success" => "",
             "error" => "",
-            "vendor" => ""
+            "user" => ""
         ];
 
 
@@ -386,21 +392,21 @@ Flight::route("POST /vendor/register", function(){
         else
         {
 
-        $vendorname = $service->getParams()['vendorname'];
+        $username = $service->getParams()['username'];
         $uPassword = $service->getParams()['uPassword'];
 
-        $vendor = new Vendor();
-        $vendor->setVendorname ($vendorname);
-        $vendor->setUPassword ($uPassword);
+        $user = new User();
+        $user->setUsername ($username);
+        $user->setUPassword ($uPassword);
     
         $bddManager = Flight::get("BddManager");
-        $repo = $bddManager->getVendorRepository();
-        $createdVendor = $repo->getVendorByVendorname($vendor);
+        $repo = $bddManager->getUserRepository();
+        $createdUser = $repo->getUserByUsername($user);
     
     
             
             $status["success"] = true;
-            $status["vendor"] = $createdVendor;
+            $status["user"] = $createdUser;
         }
     
     
@@ -408,26 +414,26 @@ Flight::route("POST /vendor/register", function(){
     
     });
 
- //VENDORS GET BY ID / Récupere le vendeur et produitdu vendeur par son id@id
+ //USER GET BY ID / Récupere le user et card du user par son id@id
 
-    Flight::route("GET /vendor/@id/products", function( $id ){
+    Flight::route("GET /user/@id/cards", function( $id ){
         
         $status = [
             "success" => false,
-            "vendor" => ""
+            "user" => ""
         ];
 
-        $vendor = new Vendor();
-        $vendor->setId( $id );
+        $user = new User();
+        $user->setId( $id );
 
         $bddManager = Flight::get("BddManager");
-        $repoVendor = $bddManager->getVendorRepository();
-        $vendeur = $repoVendor->getVendorById($vendor);
-        $repoVendor->getAllProductsByVendorId($vendeur);
+        $repoUser = $bddManager->getUserRepository();
+        $vuser = $repoUser->getUserById($user);
+        $repoUser->getAllCardsByUserId($vuser);
 
-        if( $vendeur->getId() != false ){
+        if( $vuser->getId() != false ){
             $status["success"] = true;
-            $status["vendor"] = $vendeur;
+            $status["user"] = $vuser;
             
             
         }
@@ -436,26 +442,26 @@ Flight::route("POST /vendor/register", function(){
 
     });
 
-//VENDORS GET BY ID / Récupere le vendeur par son id@id
+//USER GET BY ID / Récupere le user par son id@id
 
-Flight::route("GET /vendor/@id", function( $id ){
+Flight::route("GET /user/@id", function( $id ){
     
     $status = [
         "success" => false,
         "id" => false
     ];
 
-    $vendor = new Vendor();
-    $vendor->setId( $id );
+    $user = new User();
+    $user->setId( $id );
 
     $bddManager = Flight::get("BddManager");
-    $repoVendor = $bddManager->getVendorRepository();
-    $vendeur = $repoVendor->getVendorById($vendor);
+    $repoUser = $bddManager->getUserRepository();
+    $vuser = $repoUser->getUserById($user);
    
 
-    if( $vendeur != false ){
+    if( $vuser != false ){
         $status["success"] = true;
-        $status["id"] = $vendeur->getId();
+        $status["id"] = $vuser->getId();
         
         
     }
@@ -464,9 +470,5 @@ Flight::route("GET /vendor/@id", function( $id ){
 
 });
 
-
-    // /vendor/@i
-    // $vendeur = $repository->getVendorById($id);
-    // $products = $repository->getProductsByVendor($vendeur); // est aussi hydraté par la methode addProduct de la class Vendor
 
 Flight::start();

@@ -2,6 +2,7 @@ import { SelectImg } from './selectImg.component';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Vcard } from '../class/Vcard';
 import { VcardsService } from '../services/vcards.service';
+import { Color } from '../class/Color';
 
 
 @Component({
@@ -12,26 +13,25 @@ import { VcardsService } from '../services/vcards.service';
 })
 export class CreateComponent {
 
-    public title:string;
-    public content:string;
-    public img:string;
+    public url: string = "http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/";
+    public cardtitle:string;
+    public cardcontent:string;
+    public cardimg:string;
+    public categoryId:number;
+    
 
     constructor( private cardsservice: VcardsService ) {
-    
-        ;
-        
+      
     }
 
     postCard(){
-    this.cardsservice.addUneCard(this.title, this.content, this.img);
-    console.log(this.title);
+    this.cardsservice.addUneCard(this.cardtitle, this.cardcontent, this.cardimg, this.categoryId);
     }
 
     @Input()
     public color;
+   
 
-    // la valeur des input est définie dans le parent !
-    // (donc entrée de la valeur exterieure, on utilise donc @Input() )
     @Input()
     public thevcard: Vcard;
 
@@ -40,11 +40,18 @@ export class CreateComponent {
 
     // l'evennement 'event' est lancé sur le selecteur lui même pour être utilisé au niveau du parent
     // On fait donc ressortir une valeur au niveau du template parent, on utilise alors @Output
-    @Output()
-    public event: EventEmitter<number> = new EventEmitter();
+    // @Output()
+    // public event: EventEmitter<number> = new EventEmitter();
 
-    parentRemove() {
-        this.event.emit( this.index );
+    // parentRemove() {
+    //     this.event.emit( this.index );
+    // }
+
+    myValueImg(event){
+        this.cardimg = event.value;
     }
 
+    myValueCat(event){
+        this.categoryId = event.value;
+    }
 }

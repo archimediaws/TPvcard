@@ -1,6 +1,7 @@
 
 
 
+
 import { AppComponent } from './components/app.component';
 import {RouterModule} from '@angular/router';
 import { appRoutes } from './routes';
@@ -16,13 +17,15 @@ import { SigninComponent } from './components/signin.component';
 import { DeconnexionComponent } from './components/deconnexion.component';
 
 import { SelectImg } from './components/selectImg.component';
+import { SelectCat } from './components/selectCat.component';
+import { SearchFormComponent } from './components/searchform.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'; // Pour les requêtes ajax avec angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // animation
-import { MatCardModule, MatListModule, MatGridListModule, MatMenuModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatListModule, MatGridListModule, MatMenuModule, MatIconModule, MatSelectModule, MatInputModule } from '@angular/material';
 
 import { FilterPipe } from './pipes/filter.pipe';
 
@@ -49,7 +52,10 @@ import { MatMenuTriggerForDirective } from './directives/matMenuTriggerFor.direc
     LoginComponent,
     SigninComponent,
     DeconnexionComponent,
-    SelectImg
+    SelectImg,
+    SelectCat,
+    SearchFormComponent
+
 
   ],
   imports: [
@@ -63,6 +69,7 @@ import { MatMenuTriggerForDirective } from './directives/matMenuTriggerFor.direc
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
+    MatInputModule,
     RouterModule.forRoot(
       appRoutes
       // { enableTracing: true } // <-- debugging purposes only

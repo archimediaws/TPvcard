@@ -4,83 +4,47 @@
             <div id="editcard">
                     <mat-card class="edit-card">
                             <mat-card-header>
-                            <mat-card-title>Titre: <input type="text" name="title" #inputTitle  [(ngModel)]="title"/> </mat-card-title>
+                            <mat-card-title>Titre: <input type="text" name="title" #inputTitle  [(ngModel)]="cardtitle"/> </mat-card-title>
                             </mat-card-header>
                             <!-- <div class="img-edit-card">
                             <button mat-button class="button" #addImg >Ajouter une photo</button>
                             </div> -->
-                            <img-select>
-                            
-                            <mat-form-field>
-                                 <mat-select placeholder="Choisir une image" [(ngModel)]="selectedValue" name="img">
-                                    <mat-option *ngFor="let img of imgs" [value]="img.value">
-                                      {{img.viewValue}}
-                                    </mat-option>
-                                  </mat-select>
-                            </mat-form-field>
-
-                            </img-select>
                             <mat-card-content>
-                              <p>Description: <input type="text" name="content" #inputContent [(ngModel)]="content" /></p>
+                              <p>Description: <input type="text" name="content" #inputContent [(ngModel)]="cardcontent" /></p>
+                              <cat-select (selectedValueCat)="myValueCat($event)" ></cat-select>
+                              <!-- <p>Img: <input type="text" name="img" #inputContent [(ngModel)]="img" /></p> -->
                             </mat-card-content>
+                            
+                            <img-select (selectedValueImg)="myValueImg($event)" ></img-select>
+                            <!-- <p>Couleur du fond</p>
+                            <app-color id="custom" (event)="color=$event" ></app-color> -->
                             <mat-card-actions>
                               <button mat-button (click)="postCard()" >SAUVEGARDER</button>
                               <button mat-button>ANNULER</button> <!-- init() les imputs -->
                             </mat-card-actions>
-                          </mat-card>
-                </div>
+                    </mat-card>
+
+                    
+            </div>
 
 
            <div id="viewcard">
-            <mat-card class="create-card">
+    
+            
+                    <mat-card class="create-card"  [appHighlight]="'yellow'" >
                     <mat-card-header>
-                     
-                      <mat-card-title> {{title}} </mat-card-title>
-                      
+                      <mat-card-title [appHighlight]="'green'"> {{cardtitle | uppercase }} </mat-card-title>
                     </mat-card-header>
-                    <img mat-card-image src="http://localhost/EcoleDuNum/Angular/TP/vcard/src/assets/img/poke03.jpg" alt="Photo">
-                    <!-- <img mat-card-image src="{{img}}" alt="Photo"> -->
                     <mat-card-content>
-                      <p>
-                            {{content}}
-                      </p>
+                       <p>{{cardcontent}}  </p> 
+                       <p>{{categoryId}}  </p> 
                     </mat-card-content>
-                    <mat-card-actions>
-                            <button mat-button>SAUVEGARDER</button>
-                            
-                          </mat-card-actions>
+                    <img mat-card-image src="{{url + cardimg}}">
+                    
                   </mat-card>
             </div>
            
-            
         
-            <!-- <div id="form" >
-                <label>
-                    <span>Titre :</span>
-                   
-                    <input type="text" name="title" #inputTitle />
-                </label>
-                <label>
-                    <span>Contenu :</span>
-                    <input type="text" name="content" #inputContent />
-                </label>
-                <input type="text" id="datepicker" #datepicker />
-                <button (click)="addNote( 0, inputTitle.value, inputContent.value, datepicker.value )" > Ajouter </button>
-            </div>
-        
-
-
-
-            <div id="edit" *ngIf="selected_note">
-                <label>
-                    <span>Titre :</span>
-                    <input type="text" name="title" [(ngModel)]="selected_note.title" />
-                </label>
-                <label>
-                    <span>Contenu :</span>
-                    <input type="text" name="content" [(ngModel)]="selected_note.content" />
-                </label>
-            </div> -->
         
             
         

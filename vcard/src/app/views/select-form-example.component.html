@@ -1,0 +1,19 @@
+                            <mat-form-field>
+                                 <mat-select placeholder="choisir une image" [(ngModel)]="selectedValue" name="img" (change)="selectedImg()" >
+                                    <mat-option *ngFor="let img of imgs" [value]="img.value" >
+                                      {{img.viewValue}} 
+                                    </mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+
+                            <!-- <form>
+                                <select placeholder="choisir une image" [(ngModel)]="selectedValue" name="img" (change)="selectedImg()">
+                                   <option *ngFor="let img of imgs" value="{{img.value}}">
+                                     {{img.viewValue}} 
+                                   </option>
+                                 </select>
+                           </form> -->
+
+
+
+                             

@@ -2,28 +2,28 @@
 
 class BddManager {
 
-    private $productRepository;
+    private $cardRepository;
     private $categorieRepository;
-    private $vendorRepository;
+    private $userRepository;
     private $connection;
 
     function __construct(){
         $this->connection = Connection::getConnection();
-        $this->productRepository = new ProductRepository( $this->connection );
+        $this->cardRepository = new CardRepository( $this->connection );
         $this->categorieRepository = new CategorieRepository( $this->connection );
-        $this->vendorRepository = new VendorRepository( $this->connection );
+        $this->userRepository = new UserRepository( $this->connection );
     }
 
-    function getProductRepository(){
-        return $this->productRepository;
+    function getCardRepository(){
+        return $this->cardRepository;
     }
 
     function getCategorieRepository(){
         return $this->categorieRepository;
     }
 
-    function getVendorRepository(){
-        return $this->vendorRepository;
+    function getUserRepository(){
+        return $this->userRepository;
     }
 
 }

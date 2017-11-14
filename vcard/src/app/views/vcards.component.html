@@ -1,7 +1,12 @@
-<!-- <label [appHighlight]="'red'" > Search : </label><input type="text" [(ngModel)]="search" />  -->
 
+<div id="container">
+<cat-select></cat-select>
 
-<div class="grid-cards" *ngFor="let card of vcards;">
+<search-form (searchChange)="search=$event"></search-form>
+
+<!-- <div id="search"><label [appHighlight]="'red'" > Recherche : </label><input type="text" [(ngModel)]="search" /> </div> -->
+
+<div class="grid-cards" *ngFor="let card of vcards | filter:search;">
 
         
         <mat-grid-list cols="1" rowHeight="650">
@@ -15,6 +20,10 @@
               
         </mat-grid-list>
 </div>
+
+</div>
+
+
 
 <!-- <div id="container"> -->
 
